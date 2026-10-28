@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 640" role="img">
+  <title>A cache miss calls the model and stores the answer. A cache hit reads Redis and skips the model.</title>
+  <desc>Two panels. On the first request, the app asks RediGate, Redis is empty, and RediGate calls the model, then saves the answer. On the second request, Redis returns the saved answer and the model is not called.</desc>
+  <rect width="1040" height="640" fill="#f4f0e8"/>
+  <text x="40" y="48" fill="#1f1a17" font-family="Georgia, 'Iowan Old Style', Palatino, serif" font-size="28">Same question, two trips</text>
+  <text x="40" y="78" fill="#5c564e" font-family="Georgia, Palatino, serif" font-size="16">The first answer is bought from the model. The second is read from Redis.</text>
+
+  <g>
+    <rect x="28" y="108" width="482" height="500" rx="18" fill="#fffdf8" stroke="#e4d9cc"/>
+    <text x="52" y="150" fill="#1f1a17" font-family="Georgia, Palatino, serif" font-size="22">First request</text>
+    <rect x="360" y="128" width="122" height="32" rx="16" fill="#f8edd9"/>
+    <text x="421" y="149" text-anchor="middle" fill="#9a5b12" font-family="Georgia, Palatino, serif" font-size="14" font-weight="700">MISS</text>
+
+    <rect x="52" y="196" width="128" height="56" rx="12" fill="#e7f2f0" stroke="#1f4e4a"/>
+    <text x="116" y="229" text-anchor="middle" fill="#1f4e4a" font-family="Georgia, Palatino, serif" font-size="16">Your app</text>
+    <rect x="214" y="196" width="128" height="56" rx="12" fill="#1f4e4a"/>
+    <text x="278" y="229" text-anchor="middle" fill="#fffdf8" font-family="Georgia, Palatino, serif" font-size="16">RediGate</text>
+    <rect x="376" y="196" width="110" height="56" rx="12" fill="#fffdf8" stroke="#b4332a" stroke-dasharray="5 4"/>
+    <text x="431" y="221" text-anchor="middle" fill="#b4332a" font-family="Georgia, Palatino, serif" font-size="16">Redis</text>
+    <text x="431" y="240" text-anchor="middle" fill="#9a5b12" font-family="Georgia, Palatino, serif" font-size="12">empty</text>
+
+    <line x1="180" y1="224" x2="208" y2="224" stroke="#1f1a17" stroke-width="1.6" marker-end="url(#miss-arrow)"/>
+    <line x1="342" y1="224" x2="370" y2="224" stroke="#1f1a17" stroke-width="1.6" marker-end="url(#miss-arrow)"/>
+    <text x="356" y="186" text-anchor="middle" fill="#5c564e" font-family="Georgia, Palatino, serif" font-size="12">lookup</text>
+
+    <rect x="214" y="330" width="128" height="56" rx="12" fill="#314155"/>
+    <text x="278" y="363" text-anchor="middle" fill="#fffdf8" font-family="Georgia, Palatino, serif" font-size="16">Model</text>
+    <line x1="278" y1="252" x2="278" y2="324" stroke="#1f1a17" stroke-width="1.6" marker-end="url(#miss-arrow)"/>
+    <text x="292" y="292" fill="#5c564e" font-family="Georgia, Palatino, serif" font-size="13">ask the model</text>
+
+    <path d="M342 358 H400 V252" fill="none" stroke="#b4332a" stroke-width="1.6" marker-end="url(#miss-save)"/>
+    <text x="348" y="408" fill="#b4332a" font-family="Georgia, Palatino, serif" font-size="13">save the answer</text>
+
+    <text x="52" y="470" fill="#1f1a17" font-family="Georgia, Palatino, serif" font-size="15">You pay for this call, and you wait for it.</text>
+    <text x="52" y="520" fill="#5c564e" font-family="Georgia, Palatino, serif" font-size="14">Response header</text>
+    <text x="52" y="546" fill="#9a5b12" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace" font-size="15">X-RediGate-Cache: MISS</text>
+  </g>
+
+  <g>
+    <rect x="530" y="108" width="482" height="500" rx="18" fill="#fffdf8" stroke="#e4d9cc"/>
+    <text x="554" y="150" fill="#1f1a17" font-family="Georgia, Palatino, serif" font-size="22">Second request</text>
+    <rect x="862" y="128" width="122" height="32" rx="16" fill="#e5f5ec"/>
+    <text x="923" y="149" text-anchor="middle" fill="#1d6b45" font-family="Georgia, Palatino, serif" font-size="14" font-weight="700">HIT</text>
+
+    <rect x="554" y="196" width="128" height="56" rx="12" fill="#e7f2f0" stroke="#1f4e4a"/>
+    <text x="618" y="229" text-anchor="middle" fill="#1f4e4a" font-family="Georgia, Palatino, serif" font-size="16">Your app</text>
+    <rect x="716" y="196" width="128" height="56" rx="12" fill="#1f4e4a"/>
+    <text x="780" y="229" text-anchor="middle" fill="#fffdf8" font-family="Georgia, Palatino, serif" font-size="16">RediGate</text>
+    <rect x="878" y="196" width="110" height="56" rx="12" fill="#fdeceb" stroke="#b4332a"/>
+    <text x="933" y="221" text-anchor="middle" fill="#b4332a" font-family="Georgia, Palatino, serif" font-size="16">Redis</text>
+    <text x="933" y="240" text-anchor="middle" fill="#1d6b45" font-family="Georgia, Palatino, serif" font-size="12">found</text>
+
+    <line x1="682" y1="224" x2="710" y2="224" stroke="#1f1a17" stroke-width="1.6" marker-end="url(#hit-arrow)"/>
+    <line x1="844" y1="224" x2="872" y2="224" stroke="#1f1a17" stroke-width="1.6" marker-end="url(#hit-arrow)"/>
+    <text x="858" y="186" text-anchor="middle" fill="#5c564e" font-family="Georgia, Palatino, serif" font-size="12">lookup</text>
+    <path d="M933 252 V300 H780" fill="none" stroke="#1d6b45" stroke-width="1.6" marker-end="url(#hit-back)"/>
+    <text x="800" y="292" fill="#1d6b45" font-family="Georgia, Palatino, serif" font-size="13">saved answer</text>
+
+    <rect x="716" y="340" width="128" height="56" rx="12" fill="#f4f0e8" stroke="#c9c0b4" stroke-dasharray="5 4"/>
+    <text x="780" y="364" text-anchor="middle" fill="#8a8178" font-family="Georgia, Palatino, serif" font-size="16">Model</text>
+    <text x="780" y="382" text-anchor="middle" fill="#8a8178" font-family="Georgia, Palatino, serif" font-size="12">not called</text>
+
+    <text x="554" y="470" fill="#1f1a17" font-family="Georgia, Palatino, serif" font-size="15">No second bill. No second wait.</text>
+    <text x="554" y="520" fill="#5c564e" font-family="Georgia, Palatino, serif" font-size="14">Response header</text>
+    <text x="554" y="546" fill="#1d6b45" font-family="ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace" font-size="15">X-RediGate-Cache: HIT</text>
+  </g>
+
+  <defs>
+    <marker id="miss-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#1f1a17"/>
+    </marker>
+    <marker id="miss-save" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#b4332a"/>
+    </marker>
+    <marker id="hit-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#1f1a17"/>
+    </marker>
+    <marker id="hit-back" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#1d6b45"/>
+    </marker>
+  </defs>
+</svg>

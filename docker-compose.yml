@@ -1,0 +1,32 @@
+# Redis and RediGate. Copy .env.example to .env and set UPSTREAM_BASE_URL first.
+# Inside the app container, Redis is redis://redis:6379/0 (the service name).
+# Ports are bound to 127.0.0.1 so a laptop quick start is not open on the LAN.
+
+services:
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--save", "", "--appendonly", "no"]
+    ports:
+      - "127.0.0.1:6379:6379"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 2s
+      timeout: 2s
+      retries: 20
+
+  redigate:
+    build: .
+    image: redigate:local
+    depends_on:
+      redis:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:8080:8080"
+    environment:
+      REDIS_URL: redis://redis:6379/0
+      LISTEN_ADDR: ":8080"
+      UPSTREAM_BASE_URL: ${UPSTREAM_BASE_URL:?Set UPSTREAM_BASE_URL in .env. See .env.example}
+      UPSTREAM_API_KEY: ${UPSTREAM_API_KEY:-}
+      CACHE_TTL_SECONDS: ${CACHE_TTL_SECONDS:-3600}
+    restart: unless-stopped

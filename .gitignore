@@ -1,0 +1,24 @@
+# binaries
+/bin/
+/dist/
+*.exe
+*.dll
+*.so
+*.dylib
+
+# tests
+*.test
+*.out
+coverage.out
+coverage.html
+
+# local env
+.env
+.env.*
+!.env.example
+
+# editors and OS
+.idea/
+.vscode/
+*.swp
+.DS_Store

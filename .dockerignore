@@ -1,0 +1,9 @@
+.git
+.github
+docs
+README.md
+LICENSE
+.env
+.env.*
+coverage.out
+coverage.html
